@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Store card</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <section>
+        <input id="cardholder-name" type="text">
+        <form id="setup-form" data-secret="pi_1J3ipMLmBMVptsH1bwGnu5zd_secret_CFp6FhjeTgPDITcfh3H1yAm25">
+
+            <div id="card-element" style="width: 400px"></div>
+
+            <button id="card-button">
+                Save Card
+            </button>
+        </form>
+    </section>
+</body>
+<script type="text/javascript">
+    var stripe = Stripe("pk_test_51IU7gLLmBMVptsH1ULDSOr5rImbOuxykGjhZ6KjgvlbTHS3E3Wv7hIksDWdWIVda24AQAfVGFJ3RGhfHIo6l5XDw00pOerGcPR");
+
+    var invoice_number = "1fd4dbb4f3cc8e-8f546";
+
+    var elements = stripe.elements();
+
+    // Element styles
+    var style = {
+        base: {
+            iconColor: '#c4f0ff',
+            color: '#000',
+            fontWeight: '500',
+            fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+            fontSize: '16px',
+            fontSmoothing: 'antialiased',
+            ':-webkit-autofill': {
+                color: '#fce883',
+            },
+            '::placeholder': {
+                color: '#87BBFD',
+            },
+        },
+        invalid: {
+            iconColor: '#FFC7EE',
+            color: '#FFC7EE',
+        },
+    }
+
+    var cardElement = elements.create('card', {
+        hidePostalCode: true,
+        style: style,
+    });
+    cardElement.mount('#card-element');
+
+    var cardholderName = document.getElementById('cardholder-name');
+    var setupForm = document.getElementById('setup-form');
+    var clientSecret = setupForm.dataset.secret;
+
+    setupForm.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+
+        stripe.confirmCardSetup(
+            clientSecret,
+            {
+                payment_method: {
+                    card: cardElement,
+                    billing_details: {
+                        name: cardholderName.value,
+                    },
+                    metadata: {
+                        invoice_number: invoice_number
+                    }
+                },
+            }
+        ).then(function (result) {
+            if (result.error) {
+                // Display error.message in your UI.
+                console.log(result.error)
+            } else {
+                // The setup has succeeded. Display a success message.
+                console.log(result);
+            }
+        });
+    });
+</script>
+
+</html>
