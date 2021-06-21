@@ -10,7 +10,7 @@
 <body>
     <section>
         <input id="cardholder-name" type="text">
-        <form id="setup-form" data-secret="pi_1J3ipMLmBMVptsH1bwGnu5zd_secret_CFp6FhjeTgPDITcfh3H1yAm25">
+        <form id="setup-form" data-secret="seti_1J4oU4LmBMVptsH1nmjgq2rd_secret_JiEyNRCGiQ7KoyRBwGTIYiHCMBgi9N1">
 
             <div id="card-element" style="width: 400px"></div>
 
@@ -68,7 +68,13 @@
                 payment_method: {
                     card: cardElement,
                     billing_details: {
+                        address: {
+                            city: 'Beograd',
+                            country: 'RS'
+                        },
                         name: cardholderName.value,
+                        email: 'markonikolicdir+13@gmail.com',
+                        phone: '+381641523564'
                     },
                     metadata: {
                         invoice_number: invoice_number
