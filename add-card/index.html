@@ -10,7 +10,7 @@
 <body>
     <section>
         <input id="cardholder-name" type="text">
-        <form id="setup-form" data-secret="seti_1J4oU4LmBMVptsH1nmjgq2rd_secret_JiEyNRCGiQ7KoyRBwGTIYiHCMBgi9N1">
+        <form id="setup-form" data-secret="seti_1KBKMzBT7VIqj99RE4DNk3uB_secret_Kr2R0Df3r4RmAvEGdmLy3yYZzFJ6jiy">
 
             <div id="card-element" style="width: 400px"></div>
 
@@ -21,9 +21,9 @@
     </section>
 </body>
 <script type="text/javascript">
-    var stripe = Stripe("pk_test_51IU7gLLmBMVptsH1ULDSOr5rImbOuxykGjhZ6KjgvlbTHS3E3Wv7hIksDWdWIVda24AQAfVGFJ3RGhfHIo6l5XDw00pOerGcPR");
+    var stripe = Stripe("pk_test_51Iw6C3BT7VIqj99RH5KmITaCbO8Df33qyZodMUYepkco4DQStwFz0kAuY0S9PhQEyX1PCMckesaxgGeL1zDkoJgq00YoGFjJRy");
 
-    var invoice_number = "1fd4dbb4f3cc8e-8f546";
+    var invoice_number = "521040639ed8c3-8f546";
 
     var elements = stripe.elements();
 
@@ -67,15 +67,15 @@
             {
                 payment_method: {
                     card: cardElement,
-                    billing_details: {
-                        address: {
-                            city: 'Beograd',
-                            country: 'RS'
-                        },
-                        name: cardholderName.value,
-                        email: 'markonikolicdir+13@gmail.com',
-                        phone: '+381641523564'
-                    },
+                    // billing_details: {
+                    //     address: {
+                    //         city: 'Beograd',
+                    //         country: 'RS'
+                    //     },
+                    //     name: cardholderName.value,
+                    //     email: 'markonikolicdir+13@gmail.com',
+                    //     phone: '+381641523564'
+                    // },
                     metadata: {
                         invoice_number: invoice_number
                     }
